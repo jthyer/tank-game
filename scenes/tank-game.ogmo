@@ -1,0 +1,165 @@
+{
+  "name": "danse-macabre",
+  "ogmoVersion": "3.4.0",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": true,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 16, "y": 16},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 128, "y": 128},
+  "levelMaxSize": {"x": 4096, "y": 4096},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "externalScript": "",
+  "playCommand": "",
+  "entityTags": ["entities"],
+  "layers": [
+    {
+      "definition": "tile",
+      "name": "tile",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "82202335",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "castle"
+    },
+    {
+      "definition": "tile",
+      "name": "solid",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "82862922",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "solid"
+    },
+    {
+      "definition": "entity",
+      "name": "object",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "82657001",
+      "requiredTags": [],
+      "excludedTags": []
+    }
+  ],
+  "entities": [
+    {
+      "exportID": "20512387",
+      "name": "player",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 32, "y": 32},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["entities"],
+      "values": [],
+      "texture": "../image/spr_bear.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF6SURBVFhHxVNRrsMwDOrRd/NuloWCMU6zSU8PCSUBg7uPXfc/Y/yA67oaT/FNzroZ6nwqC7jsLmcdlMQJ6vuUX38Ah16vJJc9EbOche7QVA4wc/Scms2zo6kawv0X9p4OqyKAgl9ZezxGxy1fZWc6vB1GVwu5iL1Jd76DdaeikJPPOjN1D+vsiuDhb6a6Y3oe1tmVBbEQdDPMnPGwzlTKui6fMsH0PEbHFU5LVVem5zE7H0ylWAi6GTD9Gc3V8izo3HlBzjMVRcmByhp+5tN86gvlpSEt4/dEl2OmtlBeLhBkPe75/7/LqTO4K9NbKC8NxhvEErccJ8+B3IdORnm5ULyjFMUBXspnn60MDR1AfX2AoR0DbvkJFV35oAaSrOly/GLQZSY0Rwumuy6f5uq9o6kcmogyfMQ3GUVTtSyW5KLFmEHhui9OGYemchmKtBBLmScZh6ZyWVCLgjHDS04zDlbVQmZ4E918MD2P0dFycAc3H9xh7/457vsNeMhccLsBq6UAAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "21129402",
+      "name": "skullGenerator",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 32, "y": 32},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["entities"],
+      "values": [],
+      "texture": "../image/spr_skull.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAOISURBVFhHjZbbeeswDIO9Tx8zS1bwHF2jK3SWvHaeHP4gIVGOnRP3Y2jdCBCi5G63+/a8fYV94Lftc/s4Ji97dbzz5yC35/69P3++f2T7fY+gN/X3eVdxk0BrnPkORnBAbAL+TXv8PdL/PvQui3fmKQYxW1yTeKvANXB4gScJgAw+SSQpHuYoVsTdI25P8lKBBIdMgi4kmuxWQMDOvBkPvzercMRJEIPNwWRcgA0YPxUoYDLGgPoTZoDrV+88rCPmi8pHRl3+3Vl34Gqn9GUjY6CcdfxpK7INUavaMRcFlgERKMAyFOk14eylRBASseqDjMBLEfpvG2sjbmHgRcDAg0jZCh6LgxTE0iYJxpQdVkfTyvjRPMc2TnhtwbEy8xy76GBN5h08TWAx9tKvTJOEHxQ6KqCYK3AbiEAjcxFaQbArAjbWkrkIxLYofmGYxOkp0OIInqfgHBxTkZLZFcFS0UW6EbOA7ZcaUEctHvJfBCcYc3wyTudFTNVDEdC86AdrJAvokKMWJnjKD9AStM8pcPkwqdbs597uiSDAO2uXhE8zd+Ai0aufwL4feFcfUseacRTDywKwE+B2YF3iJImhwAA/MUiMtsjx5VuVUcYBSuVTcAYfBHxBxb3gtUOBbEzALK7eblYZansaAYyC9H7LioiyrwuJBzI6klYAiQdg+BcyDdjzLL+NYIDNb8EkIQJ+dEPmx+mgQJO5rPe52iVrbIFqg7VBJOWf1e5ntMtra0jQtSMC/BQJrGdscL2HDQXCi1D5uc+CrV+Ak8Rxy6R6YA4FjsdQ2bXsB5nyJoKXAV5Sj49QPcxz3H4FL6fAbNSB1QJfNgZH+k4mCaQCqcL0We0F3uLjO5HlIureRAiS+502CNB2f6mVe1v7q/cEMZizdhv/chXbi0QLdG1tb8NErrZQfRHnCOw2fmxB7/RkByYg0g5JC8jffLZCYDXPteD5jtelt88iPHQa3N91Bx0EYg6gLjXGrBS3JP8Rj3625xC7t1+24Lj/Ot9V5f4wAZYKvFY7Y5DzA/nsXxM1iaUIPdhBZvZtr02A/0LSARrHDImN7dnxu/+XAGCBIADQaB/lkUgxpRpjPHELPXPtXkkUTDXzPjdnx5DLWDvAIkgBHQQfL5PhUSgKZBjWT/Ukfpa/J70f49hBlzHnOkcb+22TmPMX9amf6tAn3x2PK/82VzFbH1rnO35D5PEpAcx6J1+AAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "61179366",
+      "name": "score",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["entities"],
+      "values": []
+    }
+  ],
+  "tilesets": [
+    {"label": "solid", "path": "../image/tile_wall.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAbSURBVDhPY/i/7iRJaFQDMWhUAzFo0GlYdxIAIZt2H8VAgwsAAAAASUVORK5CYII=", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0},
+    {"label": "castle", "path": "../image/tile_labyrinth.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF3SURBVGhD7ZXtzYQgDMe528YVjF9dxTWMjuMKfnUEExdwj3tSQg0h5ZDCSXjSX2JsRap/7curbduPqhgtoO9748axrqs+c/enAs9/G1t1XacPfCmKb/fgWigGF1/8S0AOxnE01m+g4l8CYDH0AqF7pmky1m+g4merATdtctcFFR+u/Z8irhURUJrHBPj6OBJa93EJuLOZ8wCbO206lkdTKDQnOHPkaqP2V/W1Rfce9O+0UfevuXtC6xSwp/o5oAUYn01RAcMwJAnY972oAJkDd8EW7GvDoXUfj/4BmQMEjxWxmxbuntA6BeyRLlQaEVCabAK4ffwuvvhZ/wCnj8dAxc8qgNPHY6DiZ2ujnD4eAxUfrlU/B7IIKMnrPM8kAfM8G4sHfIBlWdRxHKppGn0G0N62TfvQfcDGM6aULmK4EQ+ODy+BB8dPQQZZaeqvATuX0Y7x7VxGO8ZPRWqgNDIHACq3Y/wUpAZKI3PAzmW0Y/xUpAbKotQfQS0n2ydoqEQAAAAASUVORK5CYII=", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
+  ]
+}
