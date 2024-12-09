@@ -12,8 +12,6 @@ in the scene directory instead of needing to hardcode a number of scenes.
 --]]
 
 local json = require("library.json")
-local TILEWIDTH = global.WINDOW_WIDTH / global.TILE_DIMENSION
-local TILEHEIGHT = global.WINDOW_HEIGHT / global.TILE_DIMENSION
 
 -- private function declarations
 local sceneLoad, loadTiles, loadObjects
@@ -32,7 +30,12 @@ function sceneLoad()
       
       local raw = love.filesystem.read("scenes/"..file)
       local jsonData = json.decode(raw)
-      
+  
+      sceneData[numScenes].width = jsonData["width"]
+      sceneData[numScenes].height = jsonData["height"]  
+      sceneData[numScenes].tileWidth = jsonData["width"] / global.TILE_DIMENSION
+      sceneData[numScenes].tileHeight = jsonData["height"] / global.TILE_DIMENSION 
+  
       loadTiles(numScenes,sceneData,jsonData)
       loadObjects(numScenes,sceneData,jsonData)
     end
@@ -43,11 +46,11 @@ end
 
 function loadTiles(scene,sceneData,jsonData)
   sceneData[scene].tileData = {} 
-  
-  for i = 1, TILEHEIGHT do
+
+  for i = 1, sceneData[scene].tileHeight do
     local row = {}
-    for i2 = 1, TILEWIDTH do
-      local coord = jsonData["layers"][1]["data"][i2+((i-1)*TILEWIDTH)]
+    for i2 = 1, sceneData[scene].tileWidth do
+      local coord = jsonData["layers"][1]["data"][i2+((i-1)*sceneData[scene].tileWidth)]
       table.insert(row,coord)
     end
     table.insert(sceneData[scene].tileData,row)
@@ -61,10 +64,10 @@ function loadObjects(scene,sceneData,jsonData)
   --  The only reason these are a separate layer is that ogmo doesn't
   --  let me click and drag to create many "entities", so I have to 
   --  make these in tile mode if I want to easily draw a bunch of them.
-  for i = 1, TILEHEIGHT do
+  for i = 1, sceneData[scene].tileHeight do
     local row = {}
-    for i2 = 1, TILEWIDTH do
-      local coord = jsonData["layers"][2]["data"][i2+((i-1)*TILEWIDTH)]
+    for i2 = 1, sceneData[scene].tileWidth do
+      local coord = jsonData["layers"][2]["data"][i2+((i-1)*sceneData[scene].tileWidth)]
       if coord == 0 then
         local object = {}
         object.class = "wall"

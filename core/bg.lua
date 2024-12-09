@@ -41,6 +41,7 @@ function bg.setPosition(new_x,new_y)
 end
 
 function setCanvas(BGDATA)
+  canvas = love.graphics.newCanvas(BGDATA.width,BGDATA.height)
   love.graphics.setCanvas(canvas)
   
   -- background color
@@ -55,17 +56,13 @@ function setCanvas(BGDATA)
   love.graphics.setColor(1,1,1)
   
   -- tiles
-  for i,v in ipairs(BGDATA) do
+  for i,v in ipairs(BGDATA.tileData) do
     for j,v2 in ipairs(v) do
       if v2 ~= -1 then
         love.graphics.draw(tileset,quads[v2+1],(j-1)*dim,(i-1)*dim)
       end
     end
   end 
-  
-  love.graphics.setColor(.8,.8,.8)
-  love.graphics.rectangle("line",16*13,16*10,16*14,16*10)
-  love.graphics.setColor(1,1,1)  
   
   love.graphics.setCanvas()
 end

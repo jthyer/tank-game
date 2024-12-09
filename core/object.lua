@@ -29,10 +29,10 @@ end
 function Object:update()
   self:step()
   
-  if self.x < -100 or self.x > global.WINDOW_WIDTH + 100 or 
-    self.y < -100 or self.y > global.WINDOW_HEIGHT + 100 then
-    self:instanceDestroy()
-  end
+  --if self.x < -100 or self.x > global.WINDOW_WIDTH + 100 or 
+  --  self.y < -100 or self.y > global.WINDOW_HEIGHT + 100 then
+  --  self:instanceDestroy()
+  --end
   
   -- updating sprite animation
 end

@@ -1,5 +1,5 @@
 local SPEED = 2;
-local SPINSPEED = 0.04
+local SPINSPEED = 0.025
 
 local player = Object:extend()
 
@@ -18,7 +18,7 @@ end
 function player:step()
   self:readMovement()
   self:checkEnemyCollision()
-  self:bgSet()
+  self:viewSet()
 end
 
 function player:readMovement()
@@ -84,9 +84,12 @@ function player:checkEnemyCollision()
   end
 end
 
-function player:bgSet()
-  --bg.setPosition(self.x,self.y)
-  --bg.setAngle(self.rotation)
+function player:viewSet()
+  view.setPosition(1,
+    (view[1].width/2) - self.x - (self.width/2),
+    (view[1].height/2) - self.y - (self.height/2))
+
+  view.setAngle(1,-self.rotation)
 end
 
 function player:draw()
