@@ -44,7 +44,7 @@ end
 
 function bg.drawBGColor()
   -- background color
-  love.graphics.setColor(.2,.2,.2)
+  love.graphics.setColor(1,.2,.2)
   love.graphics.rectangle("fill",0,0,
     global.WINDOW_WIDTH,global.WINDOW_HEIGHT)
   love.graphics.setColor(1,1,1)

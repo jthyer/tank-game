@@ -35,6 +35,7 @@ function view.startDrawView()
 end
 
 function view.endDrawView()
+  love.graphics.setScissor()
   love.graphics.pop()
 end
 
