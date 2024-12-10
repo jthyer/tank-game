@@ -18,6 +18,10 @@ util = require "core.util"
 local tickPeriod = 1/60
 local accumulator = 0.0
 
+local frameCount = 0
+local dtCount = 0
+local fps = 0
+
 local gameStart = false
 local gameActive = false
 
@@ -37,16 +41,27 @@ end
 function love.update(dt)
   local delta = dt
 
+  dtCount = dtCount + delta
   accumulator = accumulator + delta
   if accumulator >= tickPeriod then
     kb.update()
     scene.update()
     accumulator = accumulator - tickPeriod
+    
+    frameCount = frameCount + 1
+
+    if frameCount == 60 then
+      fps = math.floor(dtCount * 6000) / 100
+      frameCount = 0
+      dtCount = 0
+    end
   end  
 end
 
 function love.draw()
   scene.draw()
+  
+  love.graphics.printf(fps,10,10, 200, "left")
 end
 
 function love.keypressed(key, scancode)
@@ -54,3 +69,4 @@ function love.keypressed(key, scancode)
       love.event.quit()
    end
 end
+

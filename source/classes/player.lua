@@ -93,7 +93,8 @@ function player:viewSet()
 end
 
 function player:draw()
-  love.graphics.draw(self.sprite,self.x+self.origin_offset,self.y+self.origin_offset,self.rotation,self.flip,1,self.origin_offset,self.origin_offset) 
+  love.graphics.draw(self.sprite,self.x+self.origin_offset,self.y+self.origin_offset,
+    self.rotation,self.flip,1,self.origin_offset,self.origin_offset) 
 end
 
 return player

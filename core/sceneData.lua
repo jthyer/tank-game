@@ -12,8 +12,6 @@ in the scene directory instead of needing to hardcode a number of scenes.
 --]]
 
 local json = require("library.json")
-
--- private function declarations
 local sceneLoad, loadTiles, loadObjects
 
 function sceneLoad()

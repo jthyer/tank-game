@@ -47,12 +47,12 @@ function setCanvas(BGDATA)
   -- background color
   love.graphics.setColor(.2,.2,.2)
   love.graphics.rectangle("fill",0,0,
-    global.WINDOW_WIDTH,global.WINDOW_HEIGHT)
+    BGDATA.width,BGDATA.height)
   love.graphics.setColor(1,1,1)
   
   -- draw bg
   love.graphics.setColor(1,1,1,.5)
-  love.graphics.draw(asset.bg["bg_bloodmoon"])
+  --love.graphics.draw(asset.bg["bg_bloodmoon"])
   love.graphics.setColor(1,1,1)
   
   -- tiles
