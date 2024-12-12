@@ -57,6 +57,26 @@ function Object:move(h,v)
   self:updateMask()
 end
 
+function Object:moveIfNoSolid()
+  local old_x, old_y = self.x, self.y
+  
+  self:move(self.hspeed,0)
+  
+  local collide = self:checkCollision("solid")
+  if (collide) then
+    self:move(old_x-self.x,0)
+    self:moveToContactHor(collide)
+  end
+  
+  self:move(0,self.vspeed)
+  
+  collide = self:checkCollision("solid")
+  if (collide) then
+    self:move(0,old_y-self.y)
+    self:moveToContactVert(collide)
+  end  
+end
+
 function Object:updateMask()
   self.mask.x = self.x + self.mask.x_offset
   self.mask.y = self.y + self.mask.y_offset 
@@ -82,6 +102,39 @@ function Object:moveToContactVert(obj)
     pushback = obj.mask.y + obj.mask.height - self.mask.y
     self:move(0,pushback)
   end
+end
+
+function Object:distanceToObject(obj)
+  local dist = ((obj.x-self.x)^2+(obj.y-self.y)^2)^0.5
+  return dist
+end
+
+function Object:setVectorAngle(angle,speed,rotate)      
+  if rotate then
+    self.rotation = angle + 1.571  -- rotate sprite
+  end
+  
+  self.hspeed = speed * math.cos(angle - 1.591)
+  self.vspeed = speed * math.sin(angle - 1.591)
+end
+
+function Object:getVectorAngle(target_x,target_y)
+  local angle = math.atan2((target_y - self.y), (target_x - self.x))
+  
+  return angle
+end
+
+function Object:setVectorAimed(angle, speed, rotate, offset)       
+  if offset then 
+    angle = angle + offset
+  end
+  
+  if rotate then
+    self.rotation = angle + 1.571 -- rotate sprite
+  end
+  
+  self.hspeed = speed * math.cos(angle)
+  self.vspeed = speed * math.sin(angle)
 end
 
 function Object:checkCollision(tag)

@@ -9,6 +9,9 @@ function view.load()
   view[1].width = 320
   view[1].height = 320
   view[1].angle = 0 
+  
+  view[1].oldX = view[1].x
+  view[1].oldY = view[1].y
 end
 
 function view.stepBegin()
