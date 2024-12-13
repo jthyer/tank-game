@@ -18,47 +18,18 @@ end
 
 function bullet:step()
   self:move(self.hspeed,self.vspeed)
-end
-
-function bullet:setVector(hspeed,vspeed)
-  self.hspeed = hspeed
-  self.vspeed = vspeed
-end
-
-function bullet:setArrow()
-  self.width = 32
-  self.height = 32
-  self.mask.width = 10
-  self.mask.height = 10
-  self.mask.x_offset = 11
-  self.mask.y_offset = 11
-  self.origin_offset = 16
-  
-  self.sprite = asset.sprite["spr_arrow"]
-end
-
-function bullet:setVectorAngle(angle,speed,rotate)      
-  if rotate then
-    self.rotation = angle + 1.571  -- rotate bullet
+  local barrierCollide = self:checkCollision("barrier")
+  if barrierCollide then
+    barrierCollide:instanceDestroy()
+    self:instanceDestroy()
+    return
   end
   
-  self.hspeed = speed * math.cos(angle - 1.591)
-  self.vspeed = speed * math.sin(angle - 1.591)
-end
-
-function bullet:setVectorAimed(target_x,target_y, speed, rotate, offset)      
-  local angle = math.atan2((target_y - self.y), (target_x - self.x))
-  
-  if offset then 
-    angle = angle + offset
+  local wallCollide = self:checkCollision("solid")
+  if wallCollide then
+    self:instanceDestroy()
+    return
   end
-  
-  if rotate then
-    self.rotation = angle + 1.571 -- rotate bullet
-  end
-  
-  self.hspeed = speed * math.cos(angle)
-  self.vspeed = speed * math.sin(angle)
 end
 
 return bullet

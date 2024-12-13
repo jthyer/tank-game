@@ -38,7 +38,7 @@ function love.load()
   --local song = love.audio.newSource("assets/sounds/macabre.ogg", "stream")
   --song:setLooping(true)
   --song:play()
-
+  math.randomseed(os.time())
   scene.load(1)
 end
 

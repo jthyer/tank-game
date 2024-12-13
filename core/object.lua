@@ -109,6 +109,11 @@ function Object:distanceToObject(obj)
   return dist
 end
 
+function Object:setVector(hspeed,vspeed)
+  self.hspeed = hspeed
+  self.vspeed = vspeed
+end
+
 function Object:setVectorAngle(angle,speed,rotate)      
   if rotate then
     self.rotation = angle + 1.571  -- rotate sprite

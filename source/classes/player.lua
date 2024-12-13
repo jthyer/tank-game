@@ -1,5 +1,5 @@
-local SPEED = 2;
-local SPINSPEED = 0.025
+local SPEED = 3;
+local SPINSPEED = .028 --0.025
 
 local player = Object:extend()
 
