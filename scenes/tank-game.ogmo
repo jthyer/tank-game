@@ -1,5 +1,5 @@
 {
-  "name": "danse-macabre",
+  "name": "tank-game",
   "ogmoVersion": "3.4.0",
   "levelPaths": ["."],
   "backgroundColor": "#282c34ff",
@@ -18,13 +18,12 @@
   "entityTags": ["entities"],
   "layers": [
     {
-      "definition": "tile",
-      "name": "tile",
+      "definition": "entity",
+      "name": "object",
       "gridSize": {"x": 16, "y": 16},
-      "exportID": "82202335",
-      "exportMode": 0,
-      "arrayMode": 0,
-      "defaultTileset": "castle"
+      "exportID": "82657001",
+      "requiredTags": [],
+      "excludedTags": []
     },
     {
       "definition": "tile",
@@ -36,12 +35,13 @@
       "defaultTileset": "solid"
     },
     {
-      "definition": "entity",
-      "name": "object",
+      "definition": "tile",
+      "name": "tile",
       "gridSize": {"x": 16, "y": 16},
-      "exportID": "82657001",
-      "requiredTags": [],
-      "excludedTags": []
+      "exportID": "82202335",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "castle"
     }
   ],
   "entities": [
@@ -193,7 +193,7 @@
       "tags": ["entities"],
       "values": [],
       "texture": "../assets/sprites/spr_barrier.png",
-      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABRUlEQVRYR8WW2wKCMAhAW/3/L2tMmwPiNrZsT6YEh+soj4Gzw+ni9bGo/y5wIqpDQlURNR5R3WUsGBfgMIyd3UDxsytnP4cjYgLMeC2RSJFQASzjzWvXe1YmCQCqwS47oy52QC1n3jhEKgJuCRqk9wAYhHGADarf7RE3FqcAKpY4ABk6QUMBsT8B9KIIAazufxwYF0A3DoncoJXaFBSHAJNRUoIhSJn90nMtChfAMuPqDEAf6lx6nbdlEiA9E0lSaioOgBXeZ5AMAE3d6PvucL3TC5tsSyNAxl1gILWLKVkDQQt3tqE0FnjCwvvAfFFS0+mdUAJxtyAWdm87Du2EmRZrHEsA4iUno6ZSMF8HHfvvANIyeqVICu+495/Qf2VAX0QWA/hVoqVB7AItAlWJ/E3pE/R6CKD5g41xBdE0TbWhH9h5iTdDjK0hLtHwkgAAAABJRU5ErkJgggAA"
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVQ4T2Psv/v/PwMFgHHUAIbRMGAYDQNgHhoG6QAAfaM2sfRRHRUAAAAASUVORK5CYIIA"
     }
   ],
   "tilesets": [

@@ -10,10 +10,8 @@ function bullet:create()
   self.mask.x_offset = 3
   self.mask.y_offset = 3
   
-  self.hspeed = 0
-  self.vspeed = 0
-  
-  self.enemy = true
+  self.enemy = true -- swap these two if I want to make a player bullet
+  self.playerBullet = nil
 end
 
 function bullet:step()
@@ -25,11 +23,11 @@ function bullet:step()
     return
   end
   
-  local wallCollide = self:checkCollision("solid")
-  if wallCollide then
-    self:instanceDestroy()
-    return
-  end
+  --local wallCollide = self:checkCollision("solid")
+  --if wallCollide then
+   --- self:instanceDestroy()
+   -- return
+  -- end
 end
 
 return bullet

@@ -39,7 +39,7 @@ function love.load()
   --song:setLooping(true)
   --song:play()
   math.randomseed(os.time())
-  scene.load(1)
+  scene.load(2)
 end
 
 function love.update(dt)

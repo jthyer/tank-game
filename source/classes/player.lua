@@ -1,5 +1,6 @@
 local SPEED = 3;
 local SPINSPEED = .028 --0.025
+local BULLETSPEED = 4
 
 local player = Object:extend()
 
@@ -30,6 +31,13 @@ function player:readMovement()
   self.vspeed = 0
   
   -- read keyboard input
+  if kb.actionPressed() then
+    local bullet = self:instanceCreate("bullet",self.x+10,self.y+10)
+    bullet:setVectorAimed(self.rotation-math.rad(90),BULLETSPEED)
+    bullet.enemy = nil
+    bullet.playerBullet = true
+  end
+  
   if kb.shift() then
     if kb.left() then    
       self.hspeed = SPEED * math.cos(self.rotation - 3.1416) / 2

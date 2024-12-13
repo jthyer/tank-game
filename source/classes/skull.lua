@@ -12,8 +12,6 @@ function skull:create()
   self.mask.height = 24
   self.mask.x_offset = 4
   self.mask.y_offset = 4
-  self.hspeed = 0
-  self.vspeed = 0
   
   self.actualAngle = -1.571
   self.targetAngle = 0
@@ -32,6 +30,13 @@ function skull:create()
 end
 
 function skull:step()
+  local collide = self:checkCollision("playerBullet")
+  if collide then
+    collide:instanceDestroy()
+    self:instanceDestroy()
+    return
+  end
+  
   if self.target == nil then
     self.target = objectManager.getObjectByTag("player")
     if self.target == nil then
@@ -40,7 +45,7 @@ function skull:step()
   end
   
   if self.active == false then
-    if self:distanceToObject(self.target) < 100 then
+    if self:distanceToObject(self.target) < 200 then
       self.active = true
     else
       return

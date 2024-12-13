@@ -107,4 +107,8 @@ function objectManager.draw()
   end 
 end
 
+function objectManager.getClass(str)
+  return Class[str]
+end
+
 return objectManager

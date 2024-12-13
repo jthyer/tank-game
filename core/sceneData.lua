@@ -44,11 +44,10 @@ end
 
 function loadTiles(scene,sceneData,jsonData)
   sceneData[scene].tileData = {} 
-
   for i = 1, sceneData[scene].tileHeight do
     local row = {}
     for i2 = 1, sceneData[scene].tileWidth do
-      local coord = jsonData["layers"][1]["data"][i2+((i-1)*sceneData[scene].tileWidth)]
+      local coord = jsonData["layers"][3]["data"][i2+((i-1)*sceneData[scene].tileWidth)]
       table.insert(row,coord)
     end
     table.insert(sceneData[scene].tileData,row)
@@ -77,7 +76,7 @@ function loadObjects(scene,sceneData,jsonData)
   end
   
   -- load entity objects
-  for key,v in pairs(jsonData["layers"][3]["entities"]) do
+  for key,v in pairs(jsonData["layers"][1]["entities"]) do
     local object = {}
     object.class = v["name"]
     object.x = v["x"]

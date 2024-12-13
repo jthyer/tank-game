@@ -6,8 +6,7 @@
 
 local kb = {}
 
-local spaceHeld = false
-local spaceActive = false
+local actionHeld = false
 
 function kb.left()
   return love.keyboard.isDown("left") and 
@@ -37,20 +36,23 @@ function kb.shift()
   return love.keyboard.isDown("lshift") 
 end
 
-function kb.update()
-  if love.keyboard.isDown('space') then
-    if spaceActive == true then
-      spaceHeld = true 
+function kb.actionPressed()
+  if love.keyboard.isDown("z") then
+    if actionHeld == false then
+      actionHeld = true
+      return true
     end
   else
-    spaceActive = true
-    spaceHeld = false
+    actionHeld = false
   end
 end
 
+function kb.update()
+
+end
+
 function kb.reset()
-  spaceActive = false
-  spaceHeld = false
+
 end
 
 return kb

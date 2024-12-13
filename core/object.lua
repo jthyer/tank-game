@@ -10,6 +10,8 @@ function Object:new(id, x, y)
   self.rotation = 0
   self.origin_offset = 16
   self.flip = 1
+  self.hspeed = 0
+  self.vspeed = 0
   
   self.mask = {}
   self.mask.x_offset = 0
