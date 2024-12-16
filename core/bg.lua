@@ -8,6 +8,9 @@ local tileset
 local x, y = 0, 0
 local parallaxSpeed = 3
 
+bg.canvasWidth = 0
+bg.canvasHeight = 0
+
 -- private function declarations
 local setCanvas, setCanvasBackLayer
 
@@ -41,14 +44,6 @@ end
 function bg.setParallaxSpeed(s)
   parallaxSpeed = s
 end
-
-function bg.drawBGColor()
-  -- background color
-  love.graphics.setColor(1,.2,.2)
-  love.graphics.rectangle("fill",0,0,
-    global.WINDOW_WIDTH,global.WINDOW_HEIGHT)
-  love.graphics.setColor(1,1,1)
-end
   
 function bg.move(m,v)
   x = x + (m / parallaxSpeed)
@@ -56,13 +51,16 @@ function bg.move(m,v)
 end
   
 function setCanvasBackLayer(BGDATA)
-  local bg = asset.bg["bg_stars"]
-  local bgWidth = bg:getWidth()
-  local bgHeight = bg:getHeight()
+  local bgAsset = asset.bg["bg_stars"]
+  local bgWidth = bgAsset:getWidth()
+  local bgHeight = bgAsset:getHeight()
   local canvasWidth = BGDATA.width * 3
   local canvasHeight = BGDATA.height * 3
   local numHor = math.ceil(canvasWidth / bgWidth)
   local numVert = math.ceil(canvasHeight / bgHeight)
+  
+  bg.canvasWidth = canvasWidth
+  bg.canvasHeight = canvasHeight
   
   x = -BGDATA.width
   y = -BGDATA.height
@@ -73,7 +71,7 @@ function setCanvasBackLayer(BGDATA)
   
   for i=1,numHor do
     for j=1,numVert do
-      love.graphics.draw(bg,(i-1)*bgWidth,(j-1)*bgHeight)
+      love.graphics.draw(bgAsset,(i-1)*bgWidth,(j-1)*bgHeight)
     end
   end
 

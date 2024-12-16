@@ -15,6 +15,12 @@ local instanceID
 
 local Class = {}
 
+local radarScale = {}
+radarScale[1] = 0.15
+
+local hostileKills = 0
+local hostileTotal = 0
+
 local function defineClasses()
   local dir = "source/classes"
   local files = love.filesystem.getDirectoryItems(dir)
@@ -79,7 +85,13 @@ function objectManager.load(OBJECTDATA)
   objectTable = {}
   objectToDestroy = {}
   instanceID = 1
+    
+  hostileKills, hostileTotal = 0, 0
+    
   for i,obj in ipairs(OBJECTDATA) do
+    if obj.class == "skull" then
+      hostileTotal = hostileTotal + 1
+    end
     objectManager.addObject(obj.class,obj.x,obj.y)
   end
 end
@@ -93,6 +105,9 @@ function objectManager.update()
   for i,id in ipairs(objectToDestroy) do
     for k,obj in ipairs(objectTable) do
       if obj.id == id then
+        if obj.skull then
+          hostileKills = hostileKills + 1
+        end
         table.remove(objectTable,k)
         break
       end
@@ -107,8 +122,31 @@ function objectManager.draw()
   end 
 end
 
+function objectManager.drawRadar()
+  for i,obj in ipairs(objectTable) do
+    if obj.skull and obj.active then
+      love.graphics.setColor(1,0,0,1)
+      love.graphics.rectangle("fill",24+obj.x*radarScale[scene.getSceneNum()],
+        200+obj.y*radarScale[scene.getSceneNum()],3,3)
+      love.graphics.setColor(1,1,1,1)
+    elseif obj.player then
+      love.graphics.setColor(1,1,0,1)
+      love.graphics.rectangle("fill",24-2+obj.x*radarScale[scene.getSceneNum()],
+        200-2+obj.y*radarScale[scene.getSceneNum()],5,5)
+      love.graphics.setColor(1,1,1,1)
+    end
+  end
+  
+  love.graphics.printf(tostring(hostileKills),410,425,100,"right")
+  love.graphics.printf(tostring(hostileTotal),470,425,100,"right")
+end
+
 function objectManager.getClass(str)
   return Class[str]
+end
+
+function objectManager.getObjectCount()
+  return #objectTable
 end
 
 return objectManager

@@ -10,9 +10,14 @@ local scene = {}
 local sceneData = require("core.sceneData")
 local sceneNum = 1
 
+function scene.getSceneNum()
+  return sceneNum
+end
+
 function scene.load(s)
   sceneNum = s
   
+  gui.load()
   view.load()
   bg.load(sceneData[sceneNum])
   objectManager.load(sceneData[sceneNum].objectData)
@@ -25,11 +30,12 @@ function scene.update()
 end
 
 function scene.draw()
-  bg.drawBGColor()  
+  gui.draw()
   view.startDrawView()
   bg.draw()
   objectManager.draw()
   view.endDrawView()
+  objectManager.drawRadar()
 end
 
 function scene.restart()

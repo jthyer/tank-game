@@ -23,11 +23,16 @@ function bullet:step()
     return
   end
   
-  --local wallCollide = self:checkCollision("solid")
-  --if wallCollide then
-   --- self:instanceDestroy()
-   -- return
-  -- end
+  if self.target == nil then
+    self.target = objectManager.getObjectByTag("player")
+    if self.target == nil then
+      return
+    end
+  end
+  
+  if self:distanceToObject(self.target) > 200 then
+    self:instanceDestroy()
+  end
 end
 
 return bullet

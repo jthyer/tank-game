@@ -21,6 +21,7 @@ function skull:create()
 
   self.bullets = {}
   self.enemy = true
+  self.skull = true
   
   self.bulletTimer = 0
   self.bulletTimerTarget = (math.random(3)*30)+15

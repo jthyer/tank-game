@@ -6,7 +6,7 @@ global.current_width = global.WINDOW_WIDTH
 global.current_height = global.WINDOW_HEIGHT
 
 local gameTitle = "Tank Game"
-local fontPath = "assets/fonts/BetterComicSans.ttf"
+local fontPath = "assets/fonts/gunplay.otf"
 local fontSize = 32
 
 Object = require "core.object" 
@@ -17,6 +17,9 @@ view = require "core.view"
 bg = require "core.bg"
 kb = require "core.kb"
 util = require "core.util"
+
+gui = require "source.gui"
+gameState = "require source.gameState"
 
 local tickPeriod = 1/60
 local accumulator = 0.0
@@ -35,11 +38,12 @@ function love.load()
   love.window.setTitle(gameTitle)
   love.window.setVSync( 1 )  
   font = love.graphics.newFont(fontPath,fontSize,"mono")
+  love.graphics.setFont(font)
   --local song = love.audio.newSource("assets/sounds/macabre.ogg", "stream")
   --song:setLooping(true)
   --song:play()
   math.randomseed(os.time())
-  scene.load(2)
+  scene.load(1)
 end
 
 function love.update(dt)
@@ -65,7 +69,10 @@ end
 function love.draw()
   --love.graphics.setCanvas(frameCanvas)
   scene.draw()
-  love.graphics.printf(fps,10,10, 200, "left")
+  
+  --love.graphics.printf(fps,10,10, 200, "left")
+  --love.graphics.printf(objectManager.getObjectCount(),10,30, 200, "left")
+  
   --[[love.graphics.setCanvas()
   
   local frameScale = math.min(

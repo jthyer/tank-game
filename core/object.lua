@@ -46,11 +46,7 @@ end
 function Object:draw()
   if self.sprite ~= nil then
      love.graphics.draw(self.sprite,self.x+self.origin_offset,self.y+self.origin_offset,self.rotation,self.flip,1,self.origin_offset,self.origin_offset) 
-     end
-  --else
-    -- love.graphics.setColor(1,1,1)
-     --love.graphics.rectangle("line",self.mask.x,self.mask.y,self.mask.width,self.mask.height)
- -- end
+  end
 end
 
 function Object:move(h,v)
