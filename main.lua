@@ -53,6 +53,7 @@ function love.update(dt)
   accumulator = accumulator + delta
   if accumulator >= tickPeriod then
     kb.update()
+    gui.update()
     scene.update()
     accumulator = accumulator - tickPeriod
     

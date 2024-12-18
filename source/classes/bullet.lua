@@ -10,6 +10,7 @@ function bullet:create()
   self.mask.x_offset = 3
   self.mask.y_offset = 3
   
+  self.bullet = true
   self.enemy = true -- swap these two if I want to make a player bullet
   self.playerBullet = nil
 end
@@ -28,6 +29,13 @@ function bullet:step()
     if self.target == nil then
       return
     end
+  end
+  
+  local bulletCollide = self:checkCollision("bullet")
+  if bulletCollide then
+    bulletCollide:instanceDestroy()
+    self:instanceDestroy()
+    return
   end
   
   if self:distanceToObject(self.target) > 200 then

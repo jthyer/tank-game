@@ -17,6 +17,7 @@ local Class = {}
 
 local radarScale = {}
 radarScale[1] = 0.15
+radarScale[2] = 0.15
 
 local hostileKills = 0
 local hostileTotal = 0
@@ -107,6 +108,9 @@ function objectManager.update()
       if obj.id == id then
         if obj.skull then
           hostileKills = hostileKills + 1
+          if hostileKills == hostileTotal then
+            scene.win() 
+          end
         end
         table.remove(objectTable,k)
         break
@@ -126,19 +130,19 @@ function objectManager.drawRadar()
   for i,obj in ipairs(objectTable) do
     if obj.skull and obj.active then
       love.graphics.setColor(1,0,0,1)
-      love.graphics.rectangle("fill",24+obj.x*radarScale[scene.getSceneNum()],
-        200+obj.y*radarScale[scene.getSceneNum()],3,3)
+      love.graphics.rectangle("fill",165-2+obj.x*radarScale[scene.getSceneNum()],
+        120-2+obj.y*radarScale[scene.getSceneNum()],5,5)
       love.graphics.setColor(1,1,1,1)
     elseif obj.player then
       love.graphics.setColor(1,1,0,1)
-      love.graphics.rectangle("fill",24-2+obj.x*radarScale[scene.getSceneNum()],
-        200-2+obj.y*radarScale[scene.getSceneNum()],5,5)
+      love.graphics.rectangle("fill",165-3+obj.x*radarScale[scene.getSceneNum()],
+        120-3+obj.y*radarScale[scene.getSceneNum()],6,6)
       love.graphics.setColor(1,1,1,1)
     end
   end
   
-  love.graphics.printf(tostring(hostileKills),410,425,100,"right")
-  love.graphics.printf(tostring(hostileTotal),470,425,100,"right")
+  love.graphics.printf(tostring(hostileKills),400,425,100,"right")
+  love.graphics.printf(tostring(hostileTotal),460,425,100,"right")
 end
 
 function objectManager.getClass(str)

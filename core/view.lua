@@ -2,9 +2,9 @@ local view = {}
 
 function view.load()
   view[1] = {}
-  view[1].x = 160
+  view[1].x = 301
   view[1].y = 80
-  view[1].xview = 160
+  view[1].xview = 301
   view[1].yview = 80
   view[1].width = 320
   view[1].height = 320

@@ -33,6 +33,7 @@ end
 function skull:step()
   local collide = self:checkCollision("playerBullet")
   if collide then
+    gui.addScore(1000)
     collide:instanceDestroy()
     self:instanceDestroy()
     return
