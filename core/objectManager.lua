@@ -47,8 +47,6 @@ end
 
 function objectManager.removeObject(id)
   table.insert(objectToDestroy,id)
- 
-  return obj
 end
 
 function objectManager.getObject(id)
