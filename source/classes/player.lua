@@ -17,6 +17,10 @@ function player:create()
 end
 
 function player:step()
+  if gui.getTimer() <= 0 then
+    self:die()
+  end
+  
   self:readMovement()
   self:checkEnemyCollision()
   self:viewSet()
@@ -75,9 +79,7 @@ function player:checkEnemyCollision()
   local collide = self:checkCollision("enemy")
   
   if (collide) then
-    --self:instanceCreate("fire",self.x,self.y)
-    --self:instanceDestroy()
-    scene.restart()
+    self:die()
   end
 end
 
@@ -87,6 +89,12 @@ function player:viewSet()
     (view[1].height/2) - self.y - (self.height/2))
 
   view.setAngle(1,-self.rotation)
+end
+
+function player:die()
+  --self:instanceCreate("fire",self.x,self.y)
+  self:instanceDestroy()
+  scene.restart()
 end
 
 function player:draw()

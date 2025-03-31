@@ -10,8 +10,9 @@ local scene = {}
 local sceneData = require("core.sceneData")
 local sceneNum = 1
 
-local sceneType = "start"
+local sceneType = "title"
 local startTimer = 90
+local startUpdate = true
 
 function scene.getSceneNum()
   return sceneNum
@@ -22,8 +23,9 @@ function scene.getSceneType()
 end
 
 function scene.load(s,skipIntro)
-  if skipIntro == nil then
+  if skipIntro == nil and sceneType ~= "title" then
     sceneType = "start"
+    startUpdate = true
     startTimer = 90
   end
   sceneNum = s
@@ -33,7 +35,7 @@ function scene.load(s,skipIntro)
   bg.load(sceneData[sceneNum])
   objectManager.load(sceneData[sceneNum].objectData)
   
-  objectManager.update() -- adding this just to set view
+  objectManager.update() -- set view
 end
 
 function scene.update()
@@ -42,6 +44,12 @@ function scene.update()
     objectManager.update()
     view.stepEnd()
   elseif sceneType == "start" then
+    if startUpdate == true then
+      view.stepBegin()
+      objectManager.update()
+      view.stepEnd() -- kludge -- I don't know why I can't make the view update in restart
+      startUpdate = false
+    end
     startTimer = startTimer - 1
     if startTimer == 0 then
       sceneType = "game"
@@ -54,6 +62,17 @@ function scene.update()
       sceneNum = sceneNum + 1
       scene.load(sceneNum)
     end
+  elseif sceneType == "title" and (kb.actionPressed() or kb.shiftPressed()) then 
+    sceneType = "start"
+  elseif sceneType == "game over" and kb.actionPressed() then
+    gui.resetLives()
+    gui.resetScore()
+    scene.load(sceneNum)
+  elseif sceneType == "game over" and kb.shiftPressed() then
+    gui.resetLives()
+    gui.resetScore()
+    sceneNum = 1
+    scene.load(sceneNum)
   end
 end
 
@@ -70,13 +89,21 @@ function scene.draw()
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
     love.graphics.printf("LEVEL "..sceneNum.." of 5\nGET READY!",301,298,320,"center") 
-  end
-  
-  if sceneType == "next" then
+  elseif sceneType == "next" then
     love.graphics.setColor(0,0,0,.5)
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
     love.graphics.printf("LEVEL COMPLETE!",301,298,320,"center")    
+  elseif sceneType == "title" then
+    love.graphics.setColor(0,0,0,.5)
+    love.graphics.rectangle("fill",301,80,320,320)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.printf("TANK BEARTALION\n\nPRESS Z OR SHIFT TO START",301,168,320,"center")    
+  elseif sceneType == "game over" then
+    love.graphics.setColor(0,0,0,.5)
+    love.graphics.rectangle("fill",301,80,320,320)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.printf("GAME OVER\n\nPRESS Z TO CONTINUE\n\nPRESS SHIFT TO START OVER",301,105,320,"center")    
   end
 end
 
@@ -86,7 +113,12 @@ function scene.win()
 end
 
 function scene.restart(skipIntro)
-  scene.load(sceneNum,skipIntro)
+  local life = gui.loseLife()
+  if life == "continue" then
+    scene.load(sceneNum,skipIntro)
+  else 
+    sceneType = "game over"
+  end
 end
 
 return scene

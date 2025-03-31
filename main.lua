@@ -68,13 +68,13 @@ function love.update(dt)
 end
 
 function love.draw()
-  --love.graphics.setCanvas(frameCanvas)
+  love.graphics.setCanvas(frameCanvas)
   scene.draw()
   
-  --love.graphics.printf(fps,10,10, 200, "left")
-  --love.graphics.printf(objectManager.getObjectCount(),10,30, 200, "left")
-  
-  --[[love.graphics.setCanvas()
+  -- love.graphics.printf(fps,10,10, 200, "left")
+  -- love.graphics.printf(objectManager.getObjectCount(),10,30, 200, "left")
+   
+  love.graphics.setCanvas()
   
   local frameScale = math.min(
     global.current_width / global.WINDOW_WIDTH,
@@ -93,7 +93,7 @@ function love.keypressed(key, scancode)
    end
    
    if key == "f" then
-     --changeFullscreen()
+     changeFullscreen()
   end
 end
 

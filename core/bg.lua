@@ -25,6 +25,8 @@ function bg.load(BGDATA)
   local rows = image_width / dim
   local cols = image_height / dim
   
+  x, y = 0, 0
+  
   for i = 0, cols-1 do
     for j = 0, rows-1 do
       table.insert(quads,love.graphics.newQuad(

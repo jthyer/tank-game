@@ -38,6 +38,29 @@ end
   
 function gui.resetScore()
   score = 0
+  scoreText = "00000000000"
+end
+
+function gui.resetLives()
+  lives = 3
+end
+  
+function gui.getTimer()
+  return levelTimer
+end
+
+function gui.resetTimer()
+  levelTimer = 90
+  levelTimerDisplay = returnDisplayTime(levelTimer)
+end
+  
+function gui.loseLife()
+  lives = lives - 1
+  if lives == 0 then 
+    return "game over"
+  else
+    return "continue"
+  end
 end
   
 function gui.drawBGColor()
@@ -50,9 +73,13 @@ end
   
 function gui.load()
   gui.drawCanvas()
+  gui.resetTimer()
 end
 
 function gui.update()
+  if scene.getSceneType() == "title" then
+
+  end
   if scene.getSceneType() == "game" then
     frames = frames - 1
     if frames <= 0 then
@@ -89,16 +116,13 @@ function gui.drawCanvas()
   gui.drawBox(19,port.y,113,port.height-160-80) -- lives
   gui.drawBox(19,port.y+109,113,port.height-160-109) -- face
   gui.drawBox(19,port.y+189,port.width-66,port.height-160-29) -- score
-  
-  
   gui.drawBox(19,port.y+28+port.height,602,33)
-  
   
   love.graphics.printf("LIVES",19,port.y,113,"center")
   love.graphics.printf("RADAR",19+141,port.y,113,"center")
   love.graphics.printf("SCORE",19+11,port.y+189,113,"left")
   love.graphics.printf("HISCORE",19+11,port.y+189+62,200,"left")
-  love.graphics.printf("T A N K   B E A R T A L L I O N",20,port.y-64,global.WINDOW_WIDTH-40,"center")
+  love.graphics.printf("T A N K   B E A R T A L I O N",20,port.y-64,global.WINDOW_WIDTH-40,"center")
   love.graphics.printf("HOSTILES NEUTRALIZED:    / ",100-10,port.y+port.height+25,global.WINDOW_WIDTH,"left")
 
   love.graphics.setCanvas()
