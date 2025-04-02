@@ -20,6 +20,7 @@ radarScale[1] = 0.15
 radarScale[2] = 0.15
 radarScale[3] = 0.15
 radarScale[4] = 0.15
+radarScale[5] = 0.15
 
 local hostileKills = 0
 local hostileTotal = 0
