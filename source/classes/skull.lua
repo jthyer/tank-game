@@ -34,6 +34,7 @@ function skull:step()
   local collide = self:checkCollision("playerBullet")
   if collide then
     gui.addScore(1000)
+    sound.play("sfx_enemyDead")
     collide:instanceDestroy()
     self:instanceDestroy()
     return
@@ -107,6 +108,7 @@ function skull:step()
 
     if diff < 90 then
       local bullet = self:instanceCreate("bullet",self.x+10,self.y+10)
+      sound.play("sfx_enemyShoot")
       bullet:setVectorAimed(self.actualAngle,BULLETSPEED)
     end
     self.bulletTimer = 0

@@ -19,6 +19,7 @@ function bullet:step()
   self:move(self.hspeed,self.vspeed)
   local barrierCollide = self:checkCollision("barrier")
   if barrierCollide then
+    sound.play("sfx_wallDead")
     barrierCollide:instanceDestroy()
     self:instanceDestroy()
     return
@@ -34,6 +35,7 @@ function bullet:step()
   local bulletCollide = self:checkCollision("bullet")
   if bulletCollide then
     bulletCollide:instanceDestroy()
+    sound.play("sfx_wallDead")
     self:instanceDestroy()
     return
   end

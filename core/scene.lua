@@ -121,6 +121,7 @@ end
 
 function scene.win()
   sceneType = "next"
+  sound.play("sfx_win")
   gui.addScore(gui.getTimer()*100)
   startTimer = constTimer
 end

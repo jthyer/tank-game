@@ -36,8 +36,7 @@ function player:readMovement()
 
   -- read keyboard input
   if kb.actionPressed() then
-    local currentSound = sound.sfx_shoot:clone()
-    currentSound:play()
+    sound.play("sfx_shoot")
     local bullet = self:instanceCreate("bullet",self.x+10,self.y+10)
     bullet:setVectorAimed(self.rotation-math.rad(90),BULLETSPEED)
     bullet.enemy = nil
@@ -95,6 +94,7 @@ end
 
 function player:die()
   --self:instanceCreate("fire",self.x,self.y)
+  sound.play("sfx_playerDead")
   self:instanceDestroy()
   scene.restart()
 end
