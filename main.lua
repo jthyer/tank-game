@@ -13,6 +13,7 @@ Object = require "core.object"
 objectManager = require "core.objectManager"
 asset = require "core.asset"
 scene = require "core.scene"
+sound = require "core.sound"
 view = require "core.view"
 bg = require "core.bg"
 kb = require "core.kb"
@@ -39,9 +40,10 @@ function love.load()
   love.window.setVSync( 1 )  
   font = love.graphics.newFont(fontPath,fontSize,"mono")
   love.graphics.setFont(font)
-  --local song = love.audio.newSource("assets/sounds/macabre.ogg", "stream")
-  --song:setLooping(true)
-  --song:play()
+  local song = love.audio.newSource("assets/sounds/bgm_grandmasterduel.ogg", "stream")
+  song:setLooping(true)
+  song:setVolume(0.5)
+  song:play()
   math.randomseed(os.time())
   scene.load(1)
 end
@@ -71,8 +73,8 @@ function love.draw()
   love.graphics.setCanvas(frameCanvas)
   scene.draw()
   
-  -- love.graphics.printf(fps,10,10, 200, "left")
-  -- love.graphics.printf(objectManager.getObjectCount(),10,30, 200, "left")
+  --love.graphics.printf(fps,10,10, 200, "left")
+  --love.graphics.printf(objectManager.getObjectCount(),10,30, 200, "left")
    
   love.graphics.setCanvas()
   

@@ -33,9 +33,11 @@ function player:readMovement()
   
   self.hspeed = 0
   self.vspeed = 0
-  
+
   -- read keyboard input
   if kb.actionPressed() then
+    local currentSound = sound.sfx_shoot:clone()
+    currentSound:play()
     local bullet = self:instanceCreate("bullet",self.x+10,self.y+10)
     bullet:setVectorAimed(self.rotation-math.rad(90),BULLETSPEED)
     bullet.enemy = nil

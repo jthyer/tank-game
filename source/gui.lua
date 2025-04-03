@@ -2,6 +2,8 @@ local gui = {}
 
 local score = 0
 local scoreText = "00000000000"
+local hiscore = 0
+local hiscoreText = "00000000000"
 local lives = 3
 
 local levelTimer = 90
@@ -18,7 +20,7 @@ port.border = 3
 
 local canvas = love.graphics.newCanvas(global.WINDOW_WIDTH,global.WINDOW_HEIGHT)
   
-local removeZeros, returnDisplayTime
+local removeZeros, returnDisplayTime, loadHiscore
   
 function returnDisplayTime(s)
   return math.floor(s/60) .. ":" ..
@@ -31,9 +33,29 @@ function removeZeros(num, length)
   return newNum
 end
 
+function loadHiscore()
+  local info = love.filesystem.getInfo("score")
+  if info ~= nil then
+    local read = love.filesystem.read("score")
+    hiscore = tonumber(read)
+    hiscoreText = removeZeros(tostring(hiscore),11)  
+  else
+    love.filesystem.write("score",hiscore)   
+  end
+end
+
+function gui.saveScore()
+  love.filesystem.write("score",hiscore)
+end
+
 function gui.addScore(s)
   score = score + s
   scoreText = removeZeros(tostring(score),11)
+  if hiscore < score then
+    hiscore = score
+    hiscoreText = removeZeros(tostring(hiscore),11)
+    gui.saveScore()
+  end
 end
   
 function gui.resetScore()
@@ -72,6 +94,7 @@ function gui.drawBGColor()
 end
   
 function gui.load()
+  loadHiscore()
   gui.drawCanvas()
   gui.resetTimer()
 end
@@ -131,7 +154,7 @@ end
 function gui.draw()
   love.graphics.draw(canvas)
   love.graphics.printf(scoreText,30,port.y+189+31,300,"left")
-  love.graphics.printf(scoreText,30,port.y+189+93,300,"left")
+  love.graphics.printf(hiscoreText,30,port.y+189+93,300,"left")
   love.graphics.printf(lives,19,port.y+37,113,"center")
   love.graphics.printf(levelTimerDisplay,19,port.y+115,113,"center")
 end
