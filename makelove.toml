@@ -1,4 +1,4 @@
-name = "Tank-Game"
+name = "Tank-Beartalion"
 default_targets = ["win32", "win64", "macos", "appimage"]
 build_directory = "makelove-build"
 

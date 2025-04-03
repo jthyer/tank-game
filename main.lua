@@ -5,7 +5,7 @@ global.TILE_DIMENSION = 16
 global.current_width = global.WINDOW_WIDTH
 global.current_height = global.WINDOW_HEIGHT
 
-local gameTitle = "Tank Game"
+local gameTitle = "Tank Beartalion"
 local fontPath = "assets/fonts/gunplay.otf"
 local fontSize = 32
 
