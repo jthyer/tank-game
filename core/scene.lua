@@ -10,8 +10,9 @@ local scene = {}
 local sceneData = require("core.sceneData")
 local sceneNum = 1
 
+local constTimer = 90
 local sceneType = "title"
-local startTimer = 90
+local startTimer = constTimer
 local startUpdate = true
 
 function scene.getSceneNum()
@@ -26,7 +27,7 @@ function scene.load(s,skipIntro)
   if skipIntro == nil and sceneType ~= "title" then
     sceneType = "start"
     startUpdate = true
-    startTimer = 90
+    startTimer = constTimer
   end
   sceneNum = s
   
@@ -57,10 +58,15 @@ function scene.update()
   elseif sceneType == "next" then
     startTimer = startTimer - 1
     if startTimer == 0 then
-      sceneType = "start"
-      startTimer = 90
-      sceneNum = sceneNum + 1
-      scene.load(sceneNum)
+      if sceneNum < 5 then
+        sceneType = "start"
+        startTimer = constTimer
+        sceneNum = sceneNum + 1
+        scene.load(sceneNum)
+      else
+        gui.addScore(gui.getLives()*5000)
+        sceneType = "win"
+      end
     end
   elseif sceneType == "title" and (kb.actionPressed() or kb.shiftPressed()) then 
     sceneType = "start"
@@ -68,7 +74,7 @@ function scene.update()
     gui.resetLives()
     gui.resetScore()
     scene.load(sceneNum)
-  elseif sceneType == "game over" and kb.shiftPressed() then
+  elseif (sceneType == "game over" or sceneType == "win") and kb.shiftPressed() then
     gui.resetLives()
     gui.resetScore()
     sceneNum = 1
@@ -93,7 +99,8 @@ function scene.draw()
     love.graphics.setColor(0,0,0,.5)
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf("LEVEL COMPLETE!",301,298,320,"center")    
+    love.graphics.printf("LEVEL COMPLETE!\n\nTIME BONUS:\n"..gui.getTimer()*100,301,168,320,"center")  
+    --love.graphics.printf("LEVEL COMPLETE!\n\nTIME BONUS:"..gui.getTimer(),301,298,320,"center")    
   elseif sceneType == "title" then
     love.graphics.setColor(0,0,0,.5)
     love.graphics.rectangle("fill",301,80,320,320)
@@ -104,12 +111,18 @@ function scene.draw()
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
     love.graphics.printf("GAME OVER\n\nPRESS Z TO CONTINUE\n\nPRESS SHIFT TO START OVER",301,105,320,"center")    
+  elseif sceneType == "win" then
+    love.graphics.setColor(0,0,0,.5)
+    love.graphics.rectangle("fill",301,80,320,320)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.printf("YOU WON!\n\nLIVES BONUS:\n"..(gui.getLives()*5000).."\n\nPRESS SHIFT TO START OVER",301,105,320,"center")   
   end
 end
 
 function scene.win()
   sceneType = "next"
-  startTimer = 90
+  gui.addScore(gui.getTimer()*100)
+  startTimer = constTimer
 end
 
 function scene.restart(skipIntro)

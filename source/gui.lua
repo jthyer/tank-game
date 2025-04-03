@@ -85,6 +85,10 @@ function gui.loseLife()
   end
 end
   
+function gui.getLives()
+  return lives
+end
+  
 function gui.drawBGColor()
   -- background color
   love.graphics.setColor(.5,.6,.6)
