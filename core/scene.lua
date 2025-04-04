@@ -75,7 +75,7 @@ function scene.update()
     gui.resetLives()
     gui.resetScore()
     scene.load(sceneNum)
-  elseif (sceneType == "game over" or sceneType == "win") and kb.shiftPressed() then
+  elseif (sceneType == "game over" or sceneType == "win") and love.keyboard.isDown("r") then
     gui.resetLives()
     gui.resetScore()
     sceneNum = 1
@@ -111,12 +111,12 @@ function scene.draw()
     love.graphics.setColor(0,0,0,.5)
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf("GAME OVER\n\nPRESS Z TO CONTINUE\n\nPRESS SHIFT TO START OVER",301,105,320,"center")    
+    love.graphics.printf("GAME OVER\n\nPRESS Z TO CONTINUE\n\nPRESS R TO\nSTART OVER",301,105,320,"center")    
   elseif sceneType == "win" then
     love.graphics.setColor(0,0,0,.5)
     love.graphics.rectangle("fill",301,80,320,320)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf("YOU WON!\n\nLIVES BONUS:\n"..(gui.getLives()*5000).."\n\nPRESS SHIFT TO START OVER",301,105,320,"center")   
+    love.graphics.printf("YOU WON!\n\nLIVES BONUS:\n"..(gui.getLives()*5000).."\n\nPRESS R TO\nSTART OVER",301,105,320,"center")   
   end
 end
 
