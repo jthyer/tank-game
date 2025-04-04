@@ -57,6 +57,15 @@ function kb.actionPressed()
   return false
 end
 
+function kb.load()
+  if love.keyboard.isDown("z") then 
+    actionHeld = true
+  end
+  if kb.shift() then
+    shiftHeld = true
+  end
+end
+
 function kb.update()
 
 end

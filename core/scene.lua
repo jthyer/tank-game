@@ -31,6 +31,7 @@ function scene.load(s,skipIntro)
   end
   sceneNum = s
   
+  kb.load()
   gui.load()
   view.load()
   bg.load(sceneData[sceneNum])
